@@ -211,14 +211,12 @@ Here is a direct verification.  Write \(p(x)=\sum c_jx^j\), with
        +q^{3j-2}c_{j-2}+q^{2j-3}c_{j-3}.
 \]
 For each summand with \(j=m+3n\), write \(X=q^m\), \(Y=q^{3n}\).
-Reindexing the three coefficients on the right by
-\(m-1,m-2,n-1\), respectively, reduces the required equality to
+After reindexing the three coefficients on the right by
+\(m-1,m-2,n-1\), respectively, the required equality follows from the identity
 \[
  1-XY+\frac{1-X}{X}-\frac{(1+q)(1-X)Y}{q}
  -\frac{(1-X/q)(1-X)Y}{X}-\frac{1-Y}{X}=0.
 \]
-This rational identity is exact; the factors \(1-X\),
-\(1-X/q\), and \(1-Y\) also supply the zero boundary terms.
 
 The column vector
 \(\mathbf p(x)=(p(x),p(qx),p(q^2x))^{\mathsf T}\) therefore satisfies
@@ -327,7 +325,7 @@ Consequently the function
  \omega(X)=\operatorname{Ai}_p(X)\operatorname{Ai}_p(-pX)
        +\operatorname{Ai}_p(-X)\operatorname{Ai}_p(pX)
 \]
-satisfies \(\omega(pX)=\omega(X)\).  Iterating towards zero gives
+satisfies \(\omega(pX)=\omega(X)\). Comparing coefficients shows that \(\omega\) is constant, hence
 \begin{equation}\label{eq:app-Ai-Wronskian}
  \omega(X)=\omega(0)=2.
 \end{equation}
@@ -345,8 +343,8 @@ Let \(t\) satisfy \(t^4=q\), and define
  \qquad \mathbf r(x)=(\mathcal A(x),\mathcal B(x)).
 \]
 Every exponent of \(\mathcal U\) is either \(0\) or \(1\pmod4\).
-Thus \(\mathcal A,\mathcal B\) are independent of the choice of
-fourth root after the parity separation.  Define the two rows
+Thus \(\mathcal A,\mathcal B\) are power series in \(q=t^4\) and \(x\).
+Define the two rows
 \begin{equation}\label{eq:app-parity-sampling}
  (A_1,B_1)=\mathbf r(1),\qquad
  (A_2,B_2)=\mathbf r(q).
@@ -373,8 +371,7 @@ For each positive integer $j$, define
  W_j(x)=\det\begin{pmatrix}\mathbf r(x)\\\mathbf r(q^jx)\end{pmatrix}.
 \]
 Equation \eqref{eq:app-parity-initial-determinant} gives
-\(W_1(x)=x+O(x^2)\).  Put \(H(x)=W_1(x)/x\), with its
-removable value \(H(0)=1\).
+\(W_1(x)=x+O(x^2)\). Put \(H(x)=W_1(x)/x\).
 Taking two-row determinants in
 \eqref{eq:app-scalar-equation} gives
 \begin{align*}
@@ -388,7 +385,7 @@ and cancelling \(qx\) gives
  +q^2x(1+q+q^4x^2)H(q^2x)+q^6x^2H(q^3x).
 \end{equation}
 For each positive degree \(j\), the new coefficient is multiplied
-by \(1-q^j\ne0\).  The analytic solution with \(H(0)=1\) is unique.
+by \(1-q^j\ne0\).  Thus the coefficients of \(H\) are determined successively by its constant term.
 Equation \eqref{eq:app-p-recurrence}, with \(x\) replaced by \(qx\),
 shows that \(\mathsf F(q^2x,q^3x^3)\) is this solution.  Therefore
 \begin{equation}\label{eq:app-Casoratian}
@@ -422,7 +419,7 @@ The connection formula \cite[Section~1, Theorem]{Morita2011}, with the
  +\vartheta_p^{+}(-X/p)\operatorname{Ai}_p(X)
  =2(p^2;p^2)_\infty\mathcal R_{p^2}(-p^3/X^2).
 \end{equation}
-It holds for \(X\ne0\).  The factor in the cited formula is
+The factor in the cited formula is
 \((p,-1;p)_\infty=2(p^2;p^2)_\infty\).
 
 The definitions of the parity rows give
@@ -538,11 +535,11 @@ The Weierstrass addition formula gives
  \end{aligned}
 \end{equation}
 
-For an auxiliary variable $u$ and nome $\rho$, define
+Define
 \[
- \Sigma(u;\rho)=\sum_{n\ge0}\left\{
+ \Sigma(u;\rho)=\sum_{n\ge0}\left(
  \frac{u\rho^n}{(1-u\rho^n)^2}
- +\frac{\rho^{n+1}/u}{(1-\rho^{n+1}/u)^2}\right\}.
+ +\frac{\rho^{n+1}/u}{(1-\rho^{n+1}/u)^2}\right).
 \]
 Expanding the paired factors of the product at $z=1+\varepsilon$ gives
 \begin{equation}\label{eq:formal-kernel}
