@@ -1,0 +1,812 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{fontspec,microtype,booktabs}
+\usepackage[backend=biber,style=numeric-comp,sorting=nyt,
+  giveninits=true,maxbibnames=99,doi=true,isbn=false,url=true,eprint=true]{biblatex}
+\addbibresource{references.bib}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+urlcolor=blue!55!black]{hyperref}
+\usepackage{xcolor}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\KR}{\mathsf{KR}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{The three Kanade--Russell identities modulo nine}
+\author{Yuma Mizuno}
+\date{September 8, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the three symmetric Kanade--Russell identities modulo nine.
+\end{abstract}
+
+\section{Introduction and the main theorem}
+
+For \(|q|<1\), write
+\[
+ (a;q)_n=\prod_{j=0}^{n-1}(1-aq^j),\qquad
+ (a_1,\ldots,a_s;q)_\infty=\prod_{i=1}^s\prod_{j\geq0}(1-a_iq^j).
+\]
+For \(|q|<1\), define
+\begin{equation}\label{eq:source-definition}
+ \mathsf F(x,y)=\sum_{m,n\geq0}
+ \frac{q^{m^2+3mn+3n^2}x^my^n}{(q;q)_m(q^3;q^3)_n},\qquad
+ (\mathsf A,\mathsf B,\mathsf C)
+ =\bigl(\mathsf F(1,1),\mathsf F(q,q^3),\mathsf F(q^2,q^3)\bigr).
+\end{equation}
+Define also
+\begin{align}
+ \KR_1&=\frac1{(q,q^3,q^6,q^8;q^9)_\infty},\notag\\
+ \KR_2&=\frac1{(q^2,q^3,q^6,q^7;q^9)_\infty},\label{eq:K-products}\\
+ \KR_3&=\frac1{(q^3,q^4,q^5,q^6;q^9)_\infty}.\notag
+\end{align}
+
+\begin{theorem}\label{thm:KR-evaluations}
+As formal power series in \(q\), and as holomorphic identities on
+\(|q|<1\),
+\begin{equation}\label{eq:KR-evaluations}
+ \mathsf A=\KR_1,\qquad \mathsf B=\KR_2,\qquad \mathsf C=\KR_3.
+\end{equation}
+\end{theorem}
+
+Kanade and Russell used symbolic computation to discover new
+Rogers--Ramanujan type partition identities and proposed conjectures
+modulo nine and twelve in 2014 \cite{KanadeRussell2015}.
+Subsequent work established several of their conjectures; in particular,
+Bringmann, Jennings-Shaffer, and Mahlburg proved seven identities modulo
+twelve \cite{BringmannJenningsShafferMahlburg2020}.
+The three partition conjectures modulo nine corresponding to
+\eqref{eq:KR-evaluations}, however,
+remained unproved for more than a decade, despite the close resemblance
+of their partition conditions and product forms to those of the classical
+Rogers--Ramanujan identities.
+For work on these conjectures, see, for example,
+\cite{KanadeRussell2019,Kursungoz2019,ChernLi2020,Chern2020,
+UncuZudilin2021,Konenkov2024,Tsuchioka2022,Mizuno2025,WangZhang2025}.
+In this paper, we prove \eqref{eq:KR-evaluations}.
+
+Kanade and Russell originally formulated these conjectures as equalities
+between numbers of partitions \cite{KanadeRussell2015}. For \(i=1,2,3\),
+let \(\mathcal D_i\) consist of partitions
+\(\lambda_1\leq\cdots\leq\lambda_\ell\) whose parts are at least
+\(i\), such that
+\(\lambda_{j+2}-\lambda_j\geq3\), and such that
+\(\lambda_j+\lambda_{j+1}\equiv0\pmod3\) whenever
+\(\lambda_{j+1}-\lambda_j\leq1\).
+Kanade and Russell conjectured that the
+number of partitions of each integer in \(\mathcal D_i\) equals the number
+with parts congruent to \(2^{i-1},3,6,9-2^{i-1}\pmod9\).
+Kur\c{s}ung\"oz later expressed the generating functions for
+\(\mathcal D_1,\mathcal D_2,\mathcal D_3\) as the double sums
+\(\mathsf A,\mathsf B,\mathsf C\), respectively
+\cite[Theorems 7--9]{Kursungoz2019}.
+Thus these partition conjectures are equivalent to
+\eqref{eq:KR-evaluations}.
+
+Together with the result of Wang and Zhang
+\cite[Theorem 1.1]{WangZhang2025}, Theorem~\ref{thm:KR-evaluations}
+also implies that the suitably normalized triple
+\((\mathsf A,\mathsf B,\mathsf C)\) is a weight-zero vector-valued
+modular function on \(\Gamma_0(3)\).
+
+The proof shows that the triple of sums \((\mathsf A,\mathsf B,\mathsf C)\)
+and the triple of products \((\KR_1,\KR_2,\KR_3)\) give the same value
+when substituted into the cubic polynomial
+\[
+ \mathcal N(X,Y,Z)=X^3+qY^3-q^2Z^3+3qXYZ.
+\]
+Together with the coefficientwise lower bounds
+\(\mathsf A\geq\KR_1\), \(\mathsf B\geq\KR_2\), and
+\(\mathsf C\geq\KR_3\), this equality forces the two triples to coincide.
+Sections~\ref{app:addition}--\ref{app:Morita} establish the
+identities needed to evaluate this polynomial at the source sums.
+Section~\ref{sec:product} evaluates the cubic at the products using
+the Jacobi addition formula and classical identities for cubic theta and Lambert series. Section~\ref{sec:positive-completion}
+combines the resulting equal cubic values with Tsuchioka's proved
+coefficientwise inequalities. The first coefficient at which the
+triples could differ gives a contradiction.
+
+In the analytic arguments below, \(0<|q|<1\).
+
+\paragraph*{Acknowledgments.}
+The author was supported by the Irish Research Council Advanced Laureate Award
+IRCLA/2023/1934 held by Robert Osburn.
+The author used GPT-6 Astra in searching for the proof and preparing the manuscript.
+The process is described in the final section, \nameref{sec:ai-discovery}.
+
+\section{An addition theorem}
+\label{app:addition}
+
+Retain the definition of \(\mathsf F\) in
+\eqref{eq:source-definition}, and define
+\[
+ \mathsf G(x,y)=\sum_{m,n\geq0}
+ \frac{q^{m^2-3mn+3n^2}x^my^n}{(q;q)_m(q^3;q^3)_n}.
+\]
+
+\begin{proposition}[Addition identities]\label{prop:app-addition}
+The following identities hold.
+\begin{align}
+ \mathsf G(x,1)
+ & =\mathsf F(x,1)\mathsf F(x,x^3)
+       +qx^2\mathsf F(qx,q^3)\mathsf F(q^2x,q^3x^3),
+       \label{eq:app-addition-0}\\
+ \mathsf G(qx,1)
+ & =\mathsf F(x,1)\mathsf F(qx,q^3x^3)
+       -qx\mathsf F(q^2x,q^3)\mathsf F(q^2x,q^3x^3),
+       \label{eq:app-addition-plus}\\
+ \mathsf G(q^{-1}x,q^3)
+ & =x\mathsf F(qx,q^3)\mathsf F(qx,q^3x^3)
+       +\mathsf F(q^2x,q^3)\mathsf F(x,x^3).
+       \label{eq:app-addition-minus}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+For each integer \(j\), define
+\[
+ R_j=\sum_{n\geq0}\frac{q^{3n^2+3jn}}{(q^3;q^3)_n}.
+\]
+Termwise subtraction and a shift of \(n\) give
+\begin{equation}\label{eq:app-R-contiguity}
+ R_j-R_{j+1}=q^{3j+3}R_{j+2}.
+\end{equation}
+If \(g(x)=\mathsf G(x,1)=\sum_{j\geq0}g_jx^j\), then
+\(g_j=q^{j^2}R_{-j}/(q;q)_j\).  Equation
+\eqref{eq:app-R-contiguity} implies, for \(j\geq2\),
+\[
+ (1-q^j)(1-q^{j-1})g_j
+ =q^{2j-1}(1-q^{j-1})g_{j-1}+q^{j-1}g_{j-2}.
+\]
+Equivalently,
+\begin{equation}\label{eq:app-scalar-equation}
+ qg(x)-(1+q+q^2x^2)g(qx)
+       +(1-q^2x)g(q^2x)+q^2xg(q^3x)=0.
+\end{equation}
+For \(j\geq2\), the factor multiplying the coefficient of \(x^j\)
+in this equation is \(q(1-q^j)(1-q^{j-1})\ne0\).
+Thus a solution is determined by its constant and linear coefficients.  For \(g\),
+these are
+\begin{equation}\label{eq:app-g-initial}
+ g(0)=R_0,\qquad [x]g(x)=\frac{q(R_0+R_1)}{1-q},
+\end{equation}
+where \(R_{-1}=R_0+R_1\) follows from
+\eqref{eq:app-R-contiguity}.
+
+The positive source has the elementary contiguities
+\begin{equation}\label{eq:app-F-contiguities}
+\begin{aligned}
+ \mathsf F(x,y)-\mathsf F(qx,y)
+       &=qx\mathsf F(q^2x,q^3y),\\
+ \mathsf F(x,y)-\mathsf F(x,q^3y)
+       &=q^3y\mathsf F(q^3x,q^6y).
+\end{aligned}
+\end{equation}
+Define
+\[
+ a(x)=\mathsf F(x,1),\quad b(x)=\mathsf F(qx,q^3),\quad
+ \mathbf f(x)=(a(x),b(x),b(qx))^{\mathsf T}.
+\]
+Using \eqref{eq:app-F-contiguities} gives
+\begin{equation}\label{eq:app-L-system}
+ \mathbf f(qx)=L(x)\mathbf f(x),\qquad
+ L(x)=\begin{pmatrix}1&0&-qx\\0&0&1\\-x&x&1+qx^2\end{pmatrix}.
+\end{equation}
+For example, its last row is
+\(b(q^2x)=xb(x)+b(qx)-xa(qx)\).
+
+Define \(p(x)=\mathsf F(qx,x^3)\).  It satisfies
+\begin{equation}\label{eq:app-p-recurrence}
+ p(x)=(1-qx)p(qx)+qx(1+q+q^2x^2)p(q^2x)+q^4x^2p(q^3x).
+\end{equation}
+Here is a direct verification.  Write \(p(x)=\sum c_jx^j\), with
+\(c_j=0\) for \(j<0\).  The coefficient identity is
+\[
+ (1-q^j)c_j
+ =\bigl(q^{2j-1}(1+q)-q^j\bigr)c_{j-1}
+       +q^{3j-2}c_{j-2}+q^{2j-3}c_{j-3}.
+\]
+For each summand with \(j=m+3n\), write \(X=q^m\), \(Y=q^{3n}\).
+Reindexing the three coefficients on the right by
+\(m-1,m-2,n-1\), respectively, reduces the required equality to
+\[
+ 1-XY+\frac{1-X}{X}-\frac{(1+q)(1-X)Y}{q}
+ -\frac{(1-X/q)(1-X)Y}{X}-\frac{1-Y}{X}=0.
+\]
+This rational identity is exact; the factors \(1-X\),
+\(1-X/q\), and \(1-Y\) also supply the zero boundary terms.
+
+The column vector
+\(\mathbf p(x)=(p(x),p(qx),p(q^2x))^{\mathsf T}\) therefore satisfies
+\begin{equation}\label{eq:app-T-system}
+ \mathbf p(x)=T(x)\mathbf p(qx),\qquad
+ T(x)=\begin{pmatrix}
+ 1-qx&qx(1+q+q^2x^2)&q^4x^2\\1&0&0\\0&1&0
+ \end{pmatrix}.
+\end{equation}
+The contiguities also give
+\begin{equation}\label{eq:app-p-bridges}
+\begin{aligned}
+ \mathsf F(x,x^3)&=p(x)+qx p(qx),\\
+ \mathsf F(qx,q^3x^3)&=p(qx)+q^2x p(q^2x),\\
+ \mathsf F(q^2x,q^3x^3)&=p(qx).
+\end{aligned}
+\end{equation}
+
+Let \(h(x)\) be the right side of \eqref{eq:app-addition-0}.
+Then \(h(x)=\mathbf f(x)^{\mathsf T}K_0(x)\mathbf p(x)\), where
+\[
+ K_0=\begin{pmatrix}1&qx&0\\0&qx^2&0\\0&0&0\end{pmatrix}.
+\]
+Define two further polynomial matrices by
+\[
+ K_1=\begin{pmatrix}0&1&q^2x\\0&0&0\\0&-qx&0\end{pmatrix},\qquad
+ K_2=\begin{pmatrix}1&qx-1&-q^2x\\
+                         0&0&-q^3x^3\\-qx&qx-q^2x^2&0\end{pmatrix}.
+\]
+Direct multiplication gives the three polynomial identities
+\begin{equation}\label{eq:app-bilinear-certificate}
+\begin{aligned}
+ K_1(x)T(x)&=L(x)^{\mathsf T}K_0(qx),\\
+ K_2(x)T(x)&=qxL(x)^{\mathsf T}K_1(qx),\\
+ \bigl(q^2xK_0-(qx)(1+q+q^2x^2)K_1
+       &+(1-q^2x)K_2\bigr)T(x)
+       +qxL(x)^{\mathsf T}K_2(qx)=0.
+\end{aligned}
+\end{equation}
+Contracting the first two identities with
+\(\mathbf f(x)^{\mathsf T}\) and \(\mathbf p(qx)\), and using
+\eqref{eq:app-L-system} and \eqref{eq:app-T-system}, gives
+\[
+ h(qx)=\mathbf f(x)^{\mathsf T}K_1(x)\mathbf p(x),\qquad
+ qx h(q^2x)=\mathbf f(x)^{\mathsf T}K_2(x)\mathbf p(x).
+\]
+The same contraction of the last identity gives \(qx\) times the
+left side of \eqref{eq:app-scalar-equation} with \(g=h\).
+Cancelling \(qx\) shows that \(h\) satisfies that equation.
+
+The defining sums give
+\[
+ a(0)=R_0,\quad [x]a=\frac{qR_1}{1-q},\qquad
+ \mathsf F(x,x^3)=1+\frac{q}{1-q}x+O(x^2).
+\]
+The other summand in \(h\) starts at \(x^2\).  Hence \(h\) has
+the two initial coefficients in \eqref{eq:app-g-initial}.
+The initial two coefficients and the recurrence agree, so \(h=g\).
+
+The matrix \(K_1\) and \eqref{eq:app-p-bridges} now give
+\eqref{eq:app-addition-plus}. For the last identity, termwise
+subtraction gives \(g(x)-g(qx)=qx\mathsf G(q^2x,q^{-3})\).
+The relation \(R_{-j-1}=R_{-j}+q^{-3j}R_{1-j}\), from
+\eqref{eq:app-R-contiguity}, then gives
+\[
+ qx\mathsf G(q^{-1}x,q^3)=g(x)-g(qx)-qxg(q^2x).
+\]
+Finally, direct multiplication gives
+\[
+ K_0-K_1-K_2
+       =qx\begin{pmatrix}0&0&0\\0&x&q^2x^2\\1&qx&0\end{pmatrix}.
+\]
+Contracting with \(\mathbf f(x)^{\mathsf T}\) and \(\mathbf p(x)\),
+using \eqref{eq:app-p-bridges}, and cancelling \(qx\) proves
+\eqref{eq:app-addition-minus}.
+\end{proof}
+
+At \(x=1\), Proposition~\ref{prop:app-addition} yields
+\begin{equation}\label{eq:app-quadratic-bridge}
+ \mathsf G(1,1)=\mathsf A^2+q\mathsf B\mathsf C,\qquad
+ \mathsf G(q^{-1},q^3)=\mathsf B^2+\mathsf A\mathsf C,\qquad
+ \mathsf G(q,1)=\mathsf A\mathsf B-q\mathsf C^2.
+\end{equation}
+
+The identities \eqref{eq:app-bilinear-certificate} define a bilinear
+intertwiner from the two difference systems for \(\mathsf F\) to the
+scalar difference equation for \(\mathsf G\).
+The quadratic expressions in \eqref{eq:app-quadratic-bridge} arise
+by specializing this intertwiner at \(x=1\).
+
+\section{Casoratian}
+\label{app:casoratian}
+
+For \(0<|p|<1\), define the \(q\)-Airy function with base \(p\) by
+\[
+ \operatorname{Ai}_p(X)=\sum_{n\geq0}
+       \frac{p^{n(n-1)/2}X^n}{(p^2;p^2)_n}.
+\]
+Its elementary difference equation is
+\begin{equation}\label{eq:app-Ai-contiguity}
+ \operatorname{Ai}_p(X)-\operatorname{Ai}_p(p^2X)
+       =X\operatorname{Ai}_p(pX).
+\end{equation}
+Consequently the function
+\[
+ \omega(X)=\operatorname{Ai}_p(X)\operatorname{Ai}_p(-pX)
+       +\operatorname{Ai}_p(-X)\operatorname{Ai}_p(pX)
+\]
+satisfies \(\omega(pX)=\omega(X)\).  Iterating towards zero gives
+\begin{equation}\label{eq:app-Ai-Wronskian}
+ \omega(X)=\omega(0)=2.
+\end{equation}
+
+Choose \(t\) with \(t^4=q\), and define
+\[
+ \mathcal U(t;x)=\sum_{m,n\geq0}
+ \frac{(-1)^m t^{m^2+6mn+3n^2+6n}x^m}
+      {(t^4;t^4)_m(t^{12};t^{12})_n},
+\]
+\[
+ \mathcal A(x)=\frac{\mathcal U(t;x)+\mathcal U(-t;x)}2,
+ \qquad
+ \mathcal B(x)=\frac{\mathcal U(t;x)-\mathcal U(-t;x)}{2t},
+ \qquad \mathbf r(x)=(\mathcal A(x),\mathcal B(x)).
+\]
+Every exponent of \(\mathcal U\) is either \(0\) or \(1\pmod4\).
+Thus \(\mathcal A,\mathcal B\) are independent of the choice of
+fourth root after the parity separation.  Define the two rows
+\begin{equation}\label{eq:app-parity-sampling}
+ (A_1,B_1)=\mathbf r(1),\qquad
+ (A_2,B_2)=\mathbf r(q).
+\end{equation}
+
+Let \(J_m=\operatorname{Ai}_{t^6}(t^{6m+9})\).  Then
+\([x^m]\mathcal U(t;x)=(-1)^m t^{m^2}J_m/(q;q)_m\).
+Equation \eqref{eq:app-Ai-contiguity} gives
+\(J_{m-2}-J_m=t^{6m-3}J_{m-1}\), so these coefficients satisfy
+the same recurrence as \(g_m\) in Section~\ref{app:addition}.
+Both \(\mathcal A\) and \(\mathcal B\) therefore satisfy
+\eqref{eq:app-scalar-equation}.  Moreover,
+\eqref{eq:app-Ai-Wronskian} at \(p=t^6,X=t^9\) gives
+\begin{equation}\label{eq:app-parity-initial-determinant}
+ \det\begin{pmatrix}\mathbf r(0)\\\mathbf r'(0)\end{pmatrix}
+ =-\frac{
+ \operatorname{Ai}_{t^6}(t^9)\operatorname{Ai}_{t^6}(-t^{15})
+ +\operatorname{Ai}_{t^6}(-t^9)\operatorname{Ai}_{t^6}(t^{15})}
+ {2(1-q)}=-\frac1{1-q}.
+\end{equation}
+
+For each positive integer $j$, define
+\[
+ W_j(x)=\det\begin{pmatrix}\mathbf r(x)\\\mathbf r(q^jx)\end{pmatrix}.
+\]
+Equation \eqref{eq:app-parity-initial-determinant} gives
+\(W_1(x)=x+O(x^2)\).  Put \(H(x)=W_1(x)/x\), with its
+removable value \(H(0)=1\).
+Taking two-row determinants in
+\eqref{eq:app-scalar-equation} gives
+\begin{align*}
+ q^2x W_2(qx)&=qW_1(x)-(1-q^2x)W_1(qx),\\
+ qW_2(x)&=(1+q+q^2x^2)W_1(qx)+q^2xW_1(q^2x).
+\end{align*}
+Eliminating \(W_2\), substituting \(W_1(x)=xH(x)\),
+and cancelling \(qx\) gives
+\begin{equation}\label{eq:app-exterior-equation}
+ H(x)=(1-q^2x)H(qx)
+ +q^2x(1+q+q^4x^2)H(q^2x)+q^6x^2H(q^3x).
+\end{equation}
+For each positive degree \(j\), the new coefficient is multiplied
+by \(1-q^j\ne0\).  The analytic solution with \(H(0)=1\) is unique.
+Equation \eqref{eq:app-p-recurrence}, with \(x\) replaced by \(qx\),
+shows that \(\mathsf F(q^2x,q^3x^3)\) is this solution.  Therefore
+\begin{equation}\label{eq:app-Casoratian}
+ \det\begin{pmatrix}
+ \mathcal A(x)&\mathcal B(x)\\
+ \mathcal A(qx)&\mathcal B(qx)
+ \end{pmatrix}
+ =x\mathsf F(q^2x,q^3x^3).
+\end{equation}
+
+In particular, at \(x=1\),
+\begin{equation}\label{eq:source-minors}
+ \det\begin{pmatrix}A_1&B_1\\A_2&B_2\end{pmatrix}=\mathsf F(q^2,q^3)=\mathsf C.
+\end{equation}
+
+\section{Connection formula}
+\label{app:Morita}
+
+For \(0<|p|<1\) and \(z\ne0\), define
+\[
+ \vartheta_p^{+}(z)=\sum_{k\in\mathbb Z}p^{k(k-1)/2}z^k.
+\]
+Define the Ramanujan function by
+\[
+ \mathcal R_q(Z)=\sum_{n\geq0}\frac{q^{n^2}(-Z)^n}{(q;q)_n}.
+\]
+The connection formula \cite[Section~1, Theorem]{Morita2011}, with the
+\(q\)-Airy convention of Section~\ref{app:casoratian}, is
+\begin{equation}\label{eq:app-Morita}
+ \vartheta_p^{+}(X/p)\operatorname{Ai}_p(-X)
+ +\vartheta_p^{+}(-X/p)\operatorname{Ai}_p(X)
+ =2(p^2;p^2)_\infty\mathcal R_{p^2}(-p^3/X^2).
+\end{equation}
+It holds for \(X\ne0\).  The factor in the cited formula is
+\((p,-1;p)_\infty=2(p^2;p^2)_\infty\).
+
+The definitions of the parity rows give
+\begin{equation}\label{eq:parity-recombination}
+ \mathcal U(\pm t;1)=A_1\pm tB_1,\qquad
+ \mathcal U(\pm t;q)=A_2\pm tB_2.
+\end{equation}
+To evaluate \(\mathcal U(t;q^j)\) for \(j=0,1\), first use
+\(p=t^2\), \(X=t^{6n+4j+1}\).
+Quasiperiodicity gives
+\[
+ \vartheta_{t^2}^{+}(\pm t^{6n+4j-1})
+       =(\pm1)^n L_n\vartheta_{t^2}^{+}(\pm t^{4j-1}),
+ \qquad L_n=t^{-9n^2+(6-12j)n}.
+\]
+Multiply \eqref{eq:app-Morita} by
+\(t^{3n^2+6n}/((t^{12};t^{12})_n L_n)\), and sum over \(n\geq0\).
+The exponent on the right is
+\[
+ 4m^2-12mn+12n^2+(4-8j)m+12jn.
+\]
+At \(j=0,1\), respectively, it gives
+\(\mathsf G(q,1)\) and \(\mathsf G(q^{-1},q^3)\).
+The symmetry
+\(\vartheta_{t^2}^{+}(\pm t^3)
+ =\vartheta_{t^2}^{+}(\pm t^{-1})\) therefore gives
+\begin{align}
+ \vartheta_{t^2}^{+}(t^{-1})\mathcal U(t;1)
+ +\vartheta_{t^2}^{+}(-t^{-1})\mathcal U(-t;1)
+       &=2(q;q)_\infty\mathsf G(q,1),\notag\\
+ \vartheta_{t^2}^{+}(t^{-1})\mathcal U(t;q)
+ +\vartheta_{t^2}^{+}(-t^{-1})\mathcal U(-t;q)
+       &=2(q;q)_\infty\mathsf G(q^{-1},q^3).
+       \label{eq:app-short-Morita}
+\end{align}
+
+Next use \(p=t^6\), \(X=t^{6m+9}\).  In this case
+\[
+ \vartheta_{t^6}^{+}(\pm t^{6m+3})
+       =(\pm1)^m t^{-3m^2}\vartheta_{t^6}^{+}(\pm t^3).
+\]
+Multiply by \(t^{4m^2+4jm}/(t^4;t^4)_m\), and sum over \(m\geq0\).
+The exponent on the right is
+\(4m^2-12mn+12n^2+4jm\).  Thus
+\begin{align}
+ \vartheta_{t^6}^{+}(-t^3)\mathcal U(t;1)
+ +\vartheta_{t^6}^{+}(t^3)\mathcal U(-t;1)
+       &=2(q^3;q^3)_\infty\mathsf G(1,1),\notag\\
+ \vartheta_{t^6}^{+}(-t^3)\mathcal U(t;q)
+ +\vartheta_{t^6}^{+}(t^3)\mathcal U(-t;q)
+       &=2(q^3;q^3)_\infty\mathsf G(q,1).
+       \label{eq:app-long-Morita}
+\end{align}
+
+Define
+\[
+ \theta(q)=\sum_{n\in\mathbb Z}q^{n^2},\qquad
+ \varphi(q)=\sum_{n\in\mathbb Z}q^{n(n-1)}.
+\]
+Even and odd index separation gives
+\[
+ \vartheta_{t^2}^{+}(\pm t^{-1})
+       =\varphi(q)\pm t^{-1}\theta(q),\qquad
+ \vartheta_{t^6}^{+}(\pm t^3)
+       =\theta(q^3)\pm t^3\varphi(q^3).
+\]
+Using \eqref{eq:parity-recombination} in
+\eqref{eq:app-short-Morita}--\eqref{eq:app-long-Morita} consequently
+proves
+\begin{equation}\label{eq:app-source-matrix}
+ \begin{pmatrix}A_1&B_1\\A_2&B_2\end{pmatrix}
+ \begin{pmatrix}\varphi(q)&\theta(q^3)\\
+                 \theta(q)&-q\varphi(q^3)\end{pmatrix}
+ =\begin{pmatrix}
+ (q;q)_\infty\mathsf G(q,1)&(q^3;q^3)_\infty\mathsf G(1,1)\\
+ (q;q)_\infty\mathsf G(q^{-1},q^3)&(q^3;q^3)_\infty\mathsf G(q,1)
+ \end{pmatrix}.
+\end{equation}
+
+\section{Product cubic}\label{sec:product}
+
+Define
+\[
+ \mathfrak a(q)=\sum_{r,s\in\mathbb Z}q^{r^2+rs+s^2},\qquad
+ L(q)=\sum_{n\ge1}\frac{q^n}{(1-q^n)^2}.
+\]
+We use the square identity \cite[Theorem 7.2]{Matsuda2020}
+\begin{equation}\label{eq:formal-square}
+ \mathfrak a(q)^2=1+12L(q)-36L(q^3)
+\end{equation}
+and the trisection identity \cite[equation (2.4), with $q$ replaced by $q^3$]{BorweinBorweinGarvan1994}
+\begin{equation}\label{eq:formal-trisection}
+ (\mathfrak a(q)-\mathfrak a(q^3))(q^3;q^3)_\infty
+ =6q(q^9;q^9)_\infty^3.
+\end{equation}
+
+Write the Jacobi product as
+\begin{equation}\label{eq:formal-jacobi}
+ j(z;q)=(q,z,q/z;q)_\infty.
+\end{equation}
+It satisfies
+\begin{equation}\label{eq:formal-jacobi-shifts}
+ j(qz;q)=-z^{-1}j(z;q),\qquad
+ j(z^{-1};q)=-z^{-1}j(z;q),\qquad j(q/z;q)=j(z;q).
+\end{equation}
+
+The Weierstrass addition formula gives
+\begin{equation}\label{eq:formal-addition}
+ \begin{aligned}
+ &j(xz;\rho)j(x/z;\rho)j(y;\rho)^2
+ -j(yz;\rho)j(y/z;\rho)j(x;\rho)^2\\
+ &\hspace{15mm}=\frac yz j(xy;\rho)j(x/y;\rho)j(z;\rho)^2.
+ \end{aligned}
+\end{equation}
+
+For an auxiliary variable $u$ and nome $\rho$, define
+\[
+ \Sigma(u;\rho)=\sum_{n\ge0}\left\{
+ \frac{u\rho^n}{(1-u\rho^n)^2}
+ +\frac{\rho^{n+1}/u}{(1-\rho^{n+1}/u)^2}\right\}.
+\]
+Expanding the paired factors of the product at $z=1+\varepsilon$ gives
+\begin{equation}\label{eq:formal-kernel}
+ j(u(1+\varepsilon);\rho)j(u/(1+\varepsilon);\rho)
+ =j(u;\rho)^2\bigl(1-\Sigma(u;\rho)\varepsilon^2\bigr)
+ \pmod{\varepsilon^3},
+\end{equation}
+since $(1-bz)(1-b/z)/(1-b)^2=1-b(z+z^{-1}-2)/(1-b)^2$ and $z+z^{-1}-2=\varepsilon^2\pmod{\varepsilon^3}$.
+
+\begin{proposition}\label{prop:mc-product-cubic}
+The three products satisfy
+\begin{equation}\label{eq:mc-product-norm}
+ \mathcal N(\KR_1,\KR_2,\KR_3)
+ =\frac{\mathfrak a(q)}{(q;q)_\infty(q^3;q^3)_\infty}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For $1\le r<9$, write $J_r=j(q^r;q^9)$ and $\Lambda_r=\Sigma(q^r;q^9)$. Splitting the products by residue classes gives
+\begin{gather*}
+ J_3=(q^3;q^3)_\infty,\qquad
+ J_1J_2J_4=\frac{(q;q)_\infty(q^9;q^9)_\infty^3}{(q^3;q^3)_\infty},\\
+ (\KR_1,\KR_2,\KR_3)
+ =\frac{(q^9;q^9)_\infty^2}{(q^3;q^3)_\infty}
+ \left(\frac1{J_1},\frac1{J_2},\frac1{J_4}\right),\\
+ \KR_1\KR_2\KR_3=\frac{(q^9;q^9)_\infty^3}{(q;q)_\infty(q^3;q^3)_\infty^2}.
+\end{gather*}
+In \eqref{eq:formal-addition}, substitute $(\rho,x,y)=(q^9,q^r,q^3)$ and $z=1+\varepsilon$. The second coefficient, using \eqref{eq:formal-kernel}, gives
+\[
+ J_r^2(q^3;q^3)_\infty^2(\Lambda_r-\Lambda_3)
+ =-q^3(q^9;q^9)_\infty^6j(q^{r+3};q^9)j(q^{r-3};q^9).
+\]
+For $r=1,2,4$, reflection and the preceding product relations simplify these identities to
+\begin{align*}
+ \Lambda_1-\Lambda_3&=q(q;q)_\infty(q^9;q^9)_\infty^3\KR_1^3,\\
+ \Lambda_2-\Lambda_3&=q^2(q;q)_\infty(q^9;q^9)_\infty^3\KR_2^3,\\
+ \Lambda_4-\Lambda_3&=-q^3(q;q)_\infty(q^9;q^9)_\infty^3\KR_3^3.
+\end{align*}
+Their sum has left side $L(q)-4L(q^3)+3L(q^9)$. Multiplying by $(q^3;q^3)_\infty^2$ and using the product of the three $\KR_i$ gives
+\begin{equation}\label{eq:formal-norm-reduction}
+ \begin{aligned}
+ &(q^3;q^3)_\infty^2\bigl(L(q)-4L(q^3)+3L(q^9)\bigr)\\
+ &\quad=q(q;q)_\infty(q^3;q^3)_\infty^2(q^9;q^9)_\infty^3
+ \mathcal N(\KR_1,\KR_2,\KR_3)
+ -3q^2(q^9;q^9)_\infty^6.
+ \end{aligned}
+\end{equation}
+
+It remains to evaluate the Lambert expression. Subtracting \eqref{eq:formal-square} at $q^3$ from the same identity at $q$ yields
+\[
+ 12\bigl(L(q)-4L(q^3)+3L(q^9)\bigr)
+ =(\mathfrak a(q)-\mathfrak a(q^3))(\mathfrak a(q)+\mathfrak a(q^3)).
+\]
+Applying \eqref{eq:formal-trisection} and writing the sum of the two theta series as $2\mathfrak a(q)-(\mathfrak a(q)-\mathfrak a(q^3))$ gives
+\[
+ (q^3;q^3)_\infty^2\bigl(L(q)-4L(q^3)+3L(q^9)\bigr)
+ =q\mathfrak a(q)(q^3;q^3)_\infty(q^9;q^9)_\infty^3
+ -3q^2(q^9;q^9)_\infty^6.
+\]
+Comparison with \eqref{eq:formal-norm-reduction} and cancellation proves the proposition.
+\end{proof}
+
+\section{Cubic norm and source evaluations}
+\label{sec:positive-completion}
+
+Taking determinants in \eqref{eq:app-source-matrix} and applying
+Proposition~\ref{prop:mc-product-cubic} gives the following equalities.
+
+\begin{lemma}[Equality of the cubic norms]\label{lem:equal-norms}
+As identities of formal power series,
+\begin{equation}\label{eq:equal-norms}
+ \mathcal N(\mathsf A,\mathsf B,\mathsf C)
+ =\frac{\mathfrak a(q)}{(q;q)_\infty(q^3;q^3)_\infty}
+ =\mathcal N(\KR_1,\KR_2,\KR_3).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Splitting the summation lattice according to the parity of \(s\)
+gives
+\begin{equation}\label{eq:a2-parity}
+ \mathfrak a(q)=\theta(q)\theta(q^3)
+                   +q\varphi(q)\varphi(q^3).
+\end{equation}
+Indeed, the substitutions \((r,s)=(\ell-k,2k)\) and
+\((r,s)=(\ell-k,2k-1)\) give the exponents
+\(\ell^2+3k^2\) and
+\(\ell(\ell-1)+3k(k-1)+1\), respectively. Taking determinants directly in
+\eqref{eq:app-source-matrix}, and using \eqref{eq:source-minors}
+and \eqref{eq:a2-parity}, gives
+\[
+ \mathsf G(q,1)^2-\mathsf G(1,1)\mathsf G(q^{-1},q^3)
+ =-\frac{\mathsf C\mathfrak a(q)}{(q;q)_\infty(q^3;q^3)_\infty}.
+\]
+Substituting \eqref{eq:app-quadratic-bridge} yields
+\[
+ (\mathsf A\mathsf B-q\mathsf C^2)^2
+ -(\mathsf A^2+q\mathsf B\mathsf C)(\mathsf B^2+\mathsf A\mathsf C)
+ =-\frac{\mathsf C\mathfrak a(q)}{(q;q)_\infty(q^3;q^3)_\infty}.
+\]
+The polynomial identity
+\begin{equation}\label{eq:norm-determinant-factorization}
+ (XY-qZ^2)^2-(X^2+qYZ)(Y^2+XZ)
+       =-Z\mathcal N(X,Y,Z)
+\end{equation}
+therefore proves the first equality in \eqref{eq:equal-norms}.
+The cancellation of \(\mathsf C\) is valid because its constant coefficient is \(1\).
+
+The second equality is Proposition~\ref{prop:mc-product-cubic}.
+\end{proof}
+
+One further input supplies the direction of every possible
+discrepancy between the two triples.
+
+\begin{lemma}[Coefficientwise lower bounds]\label{lem:KR-lower-bounds}
+The three differences satisfy
+\begin{equation}\label{eq:KR-lower-bounds}
+ \mathsf A-\KR_1,\quad \mathsf B-\KR_2,\quad
+ \mathsf C-\KR_3\ \in q\mathbb Z_{\geq0}[[q]].
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let \(\mathcal D_i\), \(i=1,2,3\), be the partition sets in the introduction.
+Kur\c{s}ung\"oz proves that the generating functions
+\(\sum_{\lambda\in\mathcal D_i}q^{|\lambda|}\) are
+\(\mathsf A,\mathsf B,\mathsf C\), respectively
+\cite[Theorems 7--9, equations (1), (38), (85)]{Kursungoz2019}.
+In his two-variable formulas, the length variable is set to \(1\).
+The three exponents, in the present indices \((m,n)\), are
+\[
+ m^2+3mn+3n^2,\qquad
+ m^2+3mn+3n^2+m+3n,\qquad
+ m^2+3mn+3n^2+2m+3n.
+\]
+These are exactly the defining exponents of the three sources.
+
+Tsuchioka's spanning theorem implies that, for every \(N\geq0\),
+the number of partitions of \(N\) in \(\mathcal D_i\) is at least
+the number of partitions of \(N\) into parts congruent to
+\(2^{i-1},3,6,9-2^{i-1}\pmod9\)
+\cite[Corollary 1.4]{Tsuchioka2022}.
+The latter generating functions are \(\KR_1,\KR_2,\KR_3\).
+All six series have constant coefficient \(1\), proving
+\eqref{eq:KR-lower-bounds}.
+\end{proof}
+
+\begin{lemma}[Rigidity under coefficientwise lower bounds]
+\label{lem:positive-norm-rigidity}
+Let \(X,Y,Z,x,y,z\in1+q\mathbb Z[[q]]\).  If
+\(X-x,Y-y,Z-z\) have nonnegative coefficients and
+\(\mathcal N(X,Y,Z)=\mathcal N(x,y,z)\), then
+\((X,Y,Z)=(x,y,z)\).
+\end{lemma}
+
+\begin{proof}
+Write \(d_1=X-x\), \(d_2=Y-y\), and \(d_3=Z-z\).
+Telescoping the cubic and mixed terms gives the exact identity
+\begin{equation}\label{eq:positive-norm-factorization}
+\begin{aligned}
+ \mathcal N(X,Y,Z)-\mathcal N(x,y,z)
+ ={}&d_1\bigl(X^2+Xx+x^2+3qYZ\bigr)\\
+ &+qd_2\bigl(Y^2+Yy+y^2+3xZ\bigr)\\
+ &+qd_3\bigl(3xy-q(Z^2+Zz+z^2)\bigr).
+\end{aligned}
+\end{equation}
+The three expressions in parentheses have constant coefficients
+\(3,6,3\), respectively.  Suppose that at least one \(d_i\) is
+nonzero, and define
+\[
+ \nu=\min\{\ord_qd_1,\ 1+\ord_qd_2,\ 1+\ord_qd_3\},
+ \qquad \ord_q0=+\infty.
+\]
+Each summand of order \(\nu\) on the right of
+\eqref{eq:positive-norm-factorization} has a positive coefficient
+at that order.  Every other summand has greater order.  Thus the
+coefficient of \(q^\nu\) is positive, contradicting the equality of
+the norms.  All three differences vanish.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:KR-evaluations}]
+Apply Lemma~\ref{lem:positive-norm-rigidity} to the equal norms in
+Lemma~\ref{lem:equal-norms} and the lower bounds in
+Lemma~\ref{lem:KR-lower-bounds}.
+\end{proof}
+
+\section*{Use of AI}
+\label{sec:ai-discovery}
+
+I would first like to describe how I came to ask AI to solve this conjecture.
+I learned about the conjecture while I was a student in the Department of Mathematical and Computing Science
+at Tokyo Institute of Technology (now Institute of Science Tokyo), and I remember hearing about it from Shunsuke Tsuchioka.
+I do not remember exactly when I first heard of it, but hearing about it in Tsuchioka's lectures
+(on Rogers--Ramanujan identities and related topics), which I attended via Zoom in 2020, left a lasting impression on me.
+
+When I saw the conjecture, I noticed that the $q$-series on the sum side could be realized as
+partition $q$-series of Kato and Terashima~\cite{KatoTerashima2015} in the context of cluster algebras,
+which I was studying at the time (Terashima was then my supervisor).
+This realization could be used to derive related dilogarithm identities, but it did not provide a way to prove
+the original $q$-series identities. Ever since then, the conjecture had remained on my mind.
+Its connection with cluster algebras was also one of the main motivations for my later paper~\cite{Mizuno2025}.
+In that paper, I stated the modular transformation formulas for the products without proof.
+I had in fact obtained a proof of the transformation formulas by expressing the products as double theta series,
+but had not written it up because it lay outside the main subject of the paper and I thought it might be useful
+for the Kanade--Russell conjecture itself.
+Wang and Zhang~\cite{WangZhang2025} later proved these transformation formulas with a shorter proof than mine,
+so, in retrospect, I think this worked out well.
+
+Because this history had kept the problem on my mind, I tried asking each new AI model whether it could solve the conjecture.
+At first, I gave the models my own previous attempts (mostly recorded in SageMath files) and asked whether they could solve it.
+Eventually, the files generated during their attempts came to outnumber my own.
+The first model to make meaningful progress was GPT-5.6 Sol, which discovered on July 22, 2026 that the series
+on the sum side could be expressed as a Casoratian, as in \eqref{eq:app-Casoratian}.
+This did not yet lead to a complete proof.
+When GPT-6 Astra became available in September 2026, I asked, as usual, whether it could solve the conjecture.
+This time, the attempt led to a complete proof.
+The key discovery was the equality of cubic norms in Lemma~\ref{lem:equal-norms}.
+This cubic already arises naturally from the modular transformation formulas for the products
+that I had stated in my earlier paper, but I had not thought to consider it.
+
+The reason this cubic arises naturally can be explained as follows. Put $q=e^{2\pi i\tau}$ with $\operatorname{Im}\tau>0$,
+$\zeta=e^{2\pi i/9}$, and $\omega=\zeta^3$. The column vector
+\[
+ f(\tau)=(q^{-1/18}\KR_1,q^{5/18}\KR_2,q^{11/18}\KR_3)^{\mathsf T}
+\]
+satisfies $f(-1/(3\tau))=Sf(\tau)$~\cite{Mizuno2025,WangZhang2025}, where
+\[
+ S=\begin{pmatrix}
+ \alpha_1&\alpha_2&\alpha_4\\
+ \alpha_2&-\alpha_4&-\alpha_1\\
+ \alpha_4&-\alpha_1&\alpha_2
+ \end{pmatrix},\qquad
+ \alpha_j=\frac{1}{2\sqrt3\sin(j\pi/9)}.
+\]
+For the linear forms $L_j:\mathbb C^3\to\mathbb C$,
+$L_j(X,Y,Z)=X+\omega^jY-\omega^{2j}Z$ $(j=0,1,2)$, we have
+\[
+ \begin{gathered}
+ L_0L_1L_2=X^3+Y^3-Z^3+3XYZ,\\
+ L_0\circ S=L_0,\qquad
+ L_1\circ S=\zeta L_2,\qquad
+ L_2\circ S=\zeta^{-1}L_1.
+ \end{gathered}
+\]
+Thus their product is invariant under $S$. Evaluating it at $f(\tau)$ gives
+\[
+ L_0(f(\tau))L_1(f(\tau))L_2(f(\tau))
+ =q^{-1/6}\mathcal N(\KR_1,\KR_2,\KR_3).
+\]
+This recovers the cubic $\mathcal N$.
+
+GPT-6 Astra found that the same value could also be obtained from the sums, establishing a clear relation between the sum and product sides.
+It then combined this equality with Tsuchioka's coefficientwise inequalities
+(Lemma~\ref{lem:KR-lower-bounds}) as the final piece of the proof, thereby proving that the two sides coincide.
+
+\printbibliography
+\bigskip
+
+\noindent
+\textsc{Yuma Mizuno, School of Mathematical Sciences, University College Cork, Western Road,
+Cork, Ireland.}\par
+\noindent
+\textit{Email address}: \texttt{YMizuno@ucc.ie}
+
+\end{document}
