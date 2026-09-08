@@ -372,8 +372,13 @@ For each positive integer $j$, define
 \]
 Equation \eqref{eq:app-parity-initial-determinant} gives
 \(W_1(x)=x+O(x^2)\). Put \(H(x)=W_1(x)/x\).
-Taking two-row determinants in
-\eqref{eq:app-scalar-equation} gives
+Both components of \(\mathbf r\) satisfy \eqref{eq:app-scalar-equation}, so
+\[
+ q\mathbf r(x)-(1+q+q^2x^2)\mathbf r(qx)
+ +(1-q^2x)\mathbf r(q^2x)+q^2x\mathbf r(q^3x)=0.
+\]
+Taking the left-hand side as the first row and \(\mathbf r(qx)\), \(\mathbf r(q^2x)\)
+as the second row, respectively, and expanding the determinants gives
 \begin{align*}
  q^2x W_2(qx)&=qW_1(x)-(1-q^2x)W_1(qx),\\
  qW_2(x)&=(1+q+q^2x^2)W_1(qx)+q^2xW_1(q^2x).
@@ -746,7 +751,7 @@ I had in fact obtained a proof of the transformation formulas by expressing the 
 but had not written it up because it lay outside the main subject of the paper and I thought it might be useful
 for the Kanade--Russell conjecture itself.
 Wang and Zhang~\cite{WangZhang2025} later proved these transformation formulas with a shorter proof than mine,
-so, in retrospect, I think this worked out well.
+so in the end, I think it was good that I had left my proof out.
 
 Because this history had kept the problem on my mind, I tried asking each new AI model whether it could solve the conjecture.
 At first, I gave the models my own previous attempts (mostly recorded in SageMath files) and asked whether they could solve it.
