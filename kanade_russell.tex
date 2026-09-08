@@ -105,7 +105,7 @@ Together with the coefficientwise lower bounds
 \(\mathsf A\geq\KR_1\), \(\mathsf B\geq\KR_2\), and
 \(\mathsf C\geq\KR_3\), this equality forces the two triples to coincide.
 Sections~\ref{app:addition}--\ref{app:Morita} establish the
-identities needed to evaluate this polynomial at the source sums.
+identities needed to evaluate this polynomial at \((\mathsf A,\mathsf B,\mathsf C)\).
 Section~\ref{sec:product} evaluates the cubic at the products using
 the Jacobi addition formula and classical identities for cubic theta and Lambert series. Section~\ref{sec:positive-completion}
 combines the resulting equal cubic values with Tsuchioka's proved
@@ -120,7 +120,7 @@ IRCLA/2023/1934 held by Robert Osburn.
 The author used GPT-6 Astra in searching for the proof and preparing the manuscript.
 The process is described in the final section, \nameref{sec:ai-discovery}.
 
-\section{An addition theorem}
+\section{Bilinear identities}
 \label{app:addition}
 
 Retain the definition of \(\mathsf F\) in
@@ -130,7 +130,7 @@ Retain the definition of \(\mathsf F\) in
  \frac{q^{m^2-3mn+3n^2}x^my^n}{(q;q)_m(q^3;q^3)_n}.
 \]
 
-\begin{proposition}[Addition identities]\label{prop:app-addition}
+\begin{proposition}[Bilinear identities]\label{prop:app-addition}
 The following identities hold.
 \begin{align}
  \mathsf G(x,1)
@@ -179,7 +179,7 @@ these are
 where \(R_{-1}=R_0+R_1\) follows from
 \eqref{eq:app-R-contiguity}.
 
-The positive source has the elementary contiguities
+The series \(\mathsf F\) satisfies the elementary contiguities
 \begin{equation}\label{eq:app-F-contiguities}
 \begin{aligned}
  \mathsf F(x,y)-\mathsf F(qx,y)
@@ -504,7 +504,7 @@ proves
  \end{pmatrix}.
 \end{equation}
 
-\section{Product cubic}\label{sec:product}
+\section{A cubic identity for the products}\label{sec:product}
 
 Define
 \[
@@ -607,7 +607,7 @@ Applying \eqref{eq:formal-trisection} and writing the sum of the two theta serie
 Comparison with \eqref{eq:formal-norm-reduction} and cancellation proves the proposition.
 \end{proof}
 
-\section{Cubic norm and source evaluations}
+\section{Proof of the main theorem}
 \label{sec:positive-completion}
 
 Taking determinants in \eqref{eq:app-source-matrix} and applying
@@ -680,7 +680,7 @@ The three exponents, in the present indices \((m,n)\), are
  m^2+3mn+3n^2+m+3n,\qquad
  m^2+3mn+3n^2+2m+3n.
 \]
-These are exactly the defining exponents of the three sources.
+These are exactly the exponents in the definitions of \(\mathsf A,\mathsf B,\mathsf C\).
 
 Tsuchioka's spanning theorem implies that, for every \(N\geq0\),
 the number of partitions of \(N\) in \(\mathcal D_i\) is at least
