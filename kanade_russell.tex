@@ -172,12 +172,10 @@ in this equation is \(q(1-q^j)(1-q^{j-1})\ne0\).
 Thus a solution is determined by its constant and linear coefficients.  For \(g\),
 these are
 \begin{equation}\label{eq:app-g-initial}
- g(0)=R_0,\qquad [x]g(x)=\frac{q(R_0+R_1)}{1-q},
+ g(0)=R_0,\qquad [x]g(x)=\frac{q(R_0+R_1)}{1-q}.
 \end{equation}
-where \(R_{-1}=R_0+R_1\) follows from
-\eqref{eq:app-R-contiguity}.
 
-The series \(\mathsf F\) satisfies the elementary contiguities
+The series \(\mathsf F\) satisfies the shift relations
 \begin{equation}\label{eq:app-F-contiguities}
 \begin{aligned}
  \mathsf F(x,y)-\mathsf F(qx,y)
@@ -226,7 +224,7 @@ The column vector
  1-qx&qx(1+q+q^2x^2)&q^4x^2\\1&0&0\\0&1&0
  \end{pmatrix}.
 \end{equation}
-The contiguities also give
+The shift relations also give
 \begin{equation}\label{eq:app-p-bridges}
 \begin{aligned}
  \mathsf F(x,x^3)&=p(x)+qx p(qx),\\
@@ -300,12 +298,17 @@ At \(x=1\), Proposition~\ref{prop:app-addition} yields
  \mathsf G(q^{-1},q^3)=\mathsf B^2+\mathsf A\mathsf C,\qquad
  \mathsf G(q,1)=\mathsf A\mathsf B-q\mathsf C^2.
 \end{equation}
-
-The identities \eqref{eq:app-bilinear-certificate} define a bilinear
-intertwiner from the two difference systems for \(\mathsf F\) to the
-scalar difference equation for \(\mathsf G\).
-The quadratic expressions in \eqref{eq:app-quadratic-bridge} arise
-by specializing this intertwiner at \(x=1\).
+\begin{remark}
+Expressions for the three sums on the left in terms of infinite products were conjectured
+by Wang and Wang~\cite[Conjecture 3.7]{WangWang2026}.
+The identities \eqref{eq:app-quadratic-bridge}, together with Theorem~\ref{thm:KR-evaluations}, prove their conjecture.
+To match Wang and Wang's third formula, we rewrite its right-hand side
+\(\KR_1^2\KR_3/\KR_2-2q\KR_3^2\) as \(\KR_1\KR_2-q\KR_3^2\)
+using the classical theta identity
+\[
+ \KR_1\KR_2^2-\KR_1^2\KR_3+q\KR_2\KR_3^2=0.
+\]
+\end{remark}
 
 \section{Casoratian}
 \label{app:casoratian}
@@ -762,8 +765,15 @@ This did not yet lead to a complete proof.
 When GPT-6 Astra became available in September 2026, I asked, as usual, whether they could solve the conjecture.
 This time, the attempt led to a complete proof.
 The key discovery was the equality of cubic norms in Lemma~\ref{lem:equal-norms}.
+A clue came from Wang and Wang's conjectural expressions in terms of infinite products~\cite[Conjecture 3.7]{WangWang2026}:
+after simplification, their right-hand sides are the three quadratic expressions
+in \eqref{eq:app-quadratic-bridge}, with the products \(\KR_1,\KR_2,\KR_3\) in place of the sums.
+This suggested the identities \eqref{eq:app-quadratic-bridge}.
+GPT-6 Astra proved them via Proposition~\ref{prop:app-addition} and combined them with the connection formula
+and the Casoratian identity; the determinant factorization \eqref{eq:norm-determinant-factorization}
+then produced the cubic \(\mathcal N\).
 This cubic already arises naturally from the modular transformation formulas for the products
-that I had stated in my earlier paper, but I had not thought to consider it.
+that I had stated in the paper mentioned above, but I had not thought to consider it.
 
 The reason this cubic arises naturally can be explained as follows. Put $q=e^{2\pi i\tau}$ with $\operatorname{Im}\tau>0$,
 $\zeta=e^{2\pi i/9}$, and $\omega=\zeta^3$. The column vector
@@ -795,6 +805,8 @@ Thus their product is invariant under $S$. Evaluating it at $f(\tau)$ gives
  =q^{-1/6}\mathcal N(\KR_1,\KR_2,\KR_3).
 \]
 This recovers the cubic $\mathcal N$.
+These transformation laws, combined with a comparison of the expansions at the cusps,
+also give a modular proof of Proposition~\ref{prop:mc-product-cubic}.
 
 GPT-6 Astra found that the same value could also be obtained from the sums, establishing a clear relation between the sum and product sides.
 They then combined this equality with Tsuchioka's coefficientwise inequalities
